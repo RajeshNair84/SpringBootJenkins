@@ -7,8 +7,10 @@ pipeline {
         stage('Compile and Clean') { 
             steps {
                 // Run Maven on a Unix agent.
-              
-                sh "mvn clean compile"
+                 dir('demo') {
+                    // Run Maven build with the correct path to pom.xml
+                    sh 'mvn clean install'
+                }
             }
         }
         stage('deploy') { 
